@@ -16,6 +16,7 @@ struct AddBookView: View {
     @State private var genre = "Fantasy"
     @State private var review = ""
     @State private var rating = 3
+    @State private var hasValidName = false
     
     let genres = ["Fantasy", "Horror", "Kids", "Mystery", "Poetry", "Romance", "Thriller"]
     
@@ -44,10 +45,18 @@ struct AddBookView: View {
                         modelContext.insert(newBook)
                         dismiss()
                     }
+                    .disabled(!validator(title: title, author: author))
                 }
             }
             .navigationTitle("Add Book")
         }
+    }
+    
+    func validator(title: String, author: String) -> Bool {
+        if title.replacingOccurrences(of: " ", with: "") == "" || author.replacingOccurrences(of: " ", with: "") == "" {
+            return false
+        }
+        return true
     }
 }
 
