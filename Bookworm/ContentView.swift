@@ -33,6 +33,10 @@ struct ContentView: View {
                                 Text(book.author)
                                     .foregroundStyle(.secondary)
                             }
+                            
+                            Text(book.readDate.formatted(date:.abbreviated ,time: .omitted))
+                                .font(.caption2)
+                                .position(x: 100, y: 10)
                         }
                     }
                 }
